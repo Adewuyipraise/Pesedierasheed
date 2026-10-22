@@ -1,0 +1,58 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import repos from '../../data/repos.json';
+
+export function getStaticPaths() {
+    return repos.map(r => ({
+        params: { slug: r.slug },
+        props: { repo: r },
+    }));
+}
+
+const { repo } = Astro.props;
+const liveDemo = repo.homepage;
+---
+<Base title={`${repo.name} — Rasheed Pesedie`} description={repo.description}>
+    <Header />
+    <main>
+        <article class="proj-page">
+            <a href="/projects" class="proj-back">
+                <i class="fas fa-arrow-left"></i> All projects
+            </a>
+
+            <h1 class="proj-title">{repo.name}</h1>
+            <p class="proj-desc">{repo.description || 'No description.'}</p>
+
+            <div class="proj-meta">
+                {repo.language && <span><i class="fas fa-code"></i> {repo.language}</span>}
+                <span><i class="fas fa-star"></i> {repo.stars} stars</span>
+                <span><i class="fas fa-code-fork"></i> {repo.forks} forks</span>
+                <span><i class="fas fa-clock"></i> Updated {new Date(repo.pushed_at).toLocaleDateString()}</span>
+            </div>
+
+            <div class="proj-actions">
+                {liveDemo ? (
+                    <a href={liveDemo} target="_blank" rel="noopener" class="btn btn-primary">
+                        View live demo <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                ) : (
+                    <span class="btn btn-ghost" style="cursor:not-allowed;opacity:.6">
+                        No live demo
+                    </span>
+                )}
+                <a href={repo.html_url} target="_blank" rel="noopener" class="btn btn-ghost">
+                    View source <i class="fab fa-github"></i>
+                </a>
+            </div>
+
+            {repo.topics.length > 0 && (
+                <div class="chips chips-lg">
+                    {repo.topics.map(t => <span>{t}</span>)}
+                </div>
+            )}
+        </article>
+    </main>
+    <Footer />
+</Base>

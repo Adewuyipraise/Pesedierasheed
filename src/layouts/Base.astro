@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+
+const { title = 'Rasheed Pesedie', description = 'Cybersecurity & Network Professional' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="author" content="Rasheed Pesedie" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/png" href="/passport.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://pesedierasheed.netlify.app/" />
+    <meta property="og:image" content="https://pesedierasheed.netlify.app/passport.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+    <slot />
+
+    <script>
+        // theme toggle + mobile nav — same as your current script.js
+        (() => {
+            const root = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const saved = localStorage.getItem('theme');
+            const initial = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            const apply = t => {
+                root.setAttribute('data-theme', t);
+                if (themeIcon) themeIcon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                localStorage.setItem('theme', t);
+            };
+            apply(initial);
+            themeToggle?.addEventListener('click', () => {
+                apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+            });
+
+            const hb = document.getElementById('hamburger');
+            const nm = document.getElementById('navMenu');
+            hb?.addEventListener('click', () => {
+                const open = nm.classList.toggle('open');
+                hb.classList.toggle('active', open);
+                hb.setAttribute('aria-expanded', String(open));
+            });
+
+            const yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+        })();
+    </script>
+</body>
+</html>

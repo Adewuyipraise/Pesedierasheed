@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Message sent — Rasheed Pesedie" description="Thanks for reaching out.">
+    <Header />
+    <main style="min-height:60vh;display:grid;place-items:center;padding:120px 24px 80px;">
+        <div style="max-width:560px;text-align:center;">
+            <div class="check" style="width:72px;height:72px;border-radius:50%;background:var(--accent-soft);color:var(--accent-strong);display:grid;place-items:center;font-size:32px;margin:0 auto 28px;">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1 style="font-size:clamp(1.75rem,4vw,2.25rem);font-weight:800;margin-bottom:12px;">Thanks for reaching out</h1>
+            <p style="color:var(--muted);margin-bottom:32px;">
+                Your message went through. I usually reply within 24–48 hours.
+            </p>
+            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+                <a href="/" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Back to home</a>
+                <a href="/projects" class="btn btn-ghost">View projects <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+    <Footer />
+</Base>

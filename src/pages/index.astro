@@ -1,16 +1,60 @@
 ---
----
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Work from '../components/Work.astro';
+import Skills from '../components/Skills.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import repos from '../data/repos.json';
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+// Featured on the home page: latest 6 with a homepage/demo link
+const featured = repos.filter(r => r.homepage).slice(0, 10);
+---
+<Base>
+    <Header />
+    <main>
+        <Hero />
+        <Work />
+
+        <section id="projects" class="section section-alt">
+            <div class="container">
+                <header class="section-head">
+                    <p class="section-kicker">Selected work</p>
+                    <h2 class="section-title">Featured projects</h2>
+                </header>
+
+                <div class="bento">
+					{featured.map((r, i) => (
+						<a class={`bento-card ${i === 0 ? 'bento-feature' : ''}`} href={r.homepage} target="_blank" rel="noopener">
+							<div class="bento-head">
+								<span class="bento-tag">{r.language || 'Project'}</span>
+								<i class="fas fa-arrow-up-right-from-square"></i>
+							</div>
+							<h3>{r.name}</h3>
+							<p>{r.description || '—'}</p>
+							<div class="chips">
+								{r.topics.slice(0, 4).map(t => <span>{t}</span>)}
+							</div>
+						</a>
+					))}
+
+					<!-- 11th card: CTA to see all -->
+					<a class="bento-card" href="/projects" style="border-style:dashed;align-items:center;justify-content:center;text-align:center;">
+						<div class="bento-head" style="justify-content:center;">
+							<i class="fas fa-arrow-right"></i>
+						</div>
+						<h3>See all projects</h3>
+						<p>{repos.length} repos on GitHub</p>
+					</a>
+				</div>
+            </div>
+        </section>
+
+        <Skills />
+        <About />
+        <Contact />
+    </main>
+    <Footer />
+</Base>

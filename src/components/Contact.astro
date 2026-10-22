@@ -1,0 +1,31 @@
+<section id="contact" class="section">
+    <div class="container contact-grid">
+        <div>
+            <header class="section-head section-head-left">
+                <p class="section-kicker">Contact</p>
+                <h2 class="section-title">Let's talk</h2>
+            </header>
+            <p class="about-p">
+                Open to new opportunities, collaborations, or just a chat about
+                security and software.
+            </p>
+            <ul class="contact-list">
+                <li><i class="fas fa-envelope"></i> <a href="mailto:rasheedpesedie@gmail.com">rasheedpesedie@gmail.com</a></li>
+                <li><i class="fas fa-location-dot"></i> Lagos, Nigeria</li>
+                <li><i class="fab fa-linkedin-in"></i> <a href="https://www.linkedin.com/in/pesedierasheed" target="_blank" rel="noopener">linkedin.com/in/pesedierasheed</a></li>
+                <li><i class="fab fa-github"></i> <a href="https://github.com/Adewuyipraise" target="_blank" rel="noopener">github.com/Adewuyipraise</a></li>
+            </ul>
+        </div>
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks">
+            <input type="hidden" name="form-name" value="contact" />
+            <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
+            <div class="form-row">
+                <label>Name <input type="text" name="name" required /></label>
+                <label>Email <input type="email" name="email" required /></label>
+            </div>
+            <label>Subject <input type="text" name="subject" required /></label>
+            <label>Message <textarea name="message" rows="5" required></textarea></label>
+            <button type="submit" class="btn btn-primary">Send message</button>
+        </form>
+    </div>
+</section>

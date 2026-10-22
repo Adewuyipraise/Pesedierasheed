@@ -7,11 +7,17 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "sync": "node scripts/sync-github.js",
+    "prebuild": "node scripts/sync-github.js",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^7.4.2"
+  },
+  "devDependencies": {
+    "dotenv": "^18.0.8"
   }
+  
 }

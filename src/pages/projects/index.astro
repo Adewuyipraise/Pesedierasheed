@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import repos from '../../data/repos.json';
+---
+<Base title="All Projects — Rasheed Pesedie" description="Every project I've shipped, pulled live from GitHub.">
+    <Header />
+    <main>
+        <div class="projects-grid-full">
+            {repos.length === 0 && (
+                <p class="empty-state">No projects found. Run <code>npm run sync</code> to fetch.</p>
+            )}
+            {repos.map(r => (
+                <a class="proj-card" href={`/projects/${r.slug}`}>
+                    <div class="proj-card-head">
+                        <span>{r.language || 'Code'}</span>
+                        <span>{r.stars} ★</span>
+                    </div>
+                    <h3>{r.name}</h3>
+                    <p>{r.description || '—'}</p>
+                    <div class="chips">
+                        {r.topics.slice(0, 3).map(t => <span>{t}</span>)}
+                    </div>
+                </a>
+            ))}
+        </div>
+    </main>
+    <Footer />
+</Base>

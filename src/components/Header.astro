@@ -1,0 +1,35 @@
+---
+const links = [
+    { href: '/#work', label: 'Work' },
+    { href: '/projects', label: 'Projects' },
+    { href: '/#skills', label: 'Skills' },
+    { href: '/#about', label: 'About' },
+    { href: '/#contact', label: 'Contact' },
+];
+const path = Astro.url.pathname;
+---
+<header class="site-header">
+    <div class="container nav-wrap">
+        <a href="/" class="brand" aria-label="Home">
+            <img src="/logo.gif" alt="Rasheed Pesedie" class="brand-gif" />
+        </a>
+        <nav aria-label="Primary">
+            <ul class="nav-menu" id="navMenu">
+                {links.map(l => (
+                    <li>
+                        <a href={l.href} class={`nav-link ${path === l.href ? 'active' : ''}`}>{l.label}</a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+        <div class="nav-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+            <a href="/Rasheed_Pesedie_CV.pdf" download class="btn btn-sm btn-primary">CV</a>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</header>

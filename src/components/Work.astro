@@ -1,0 +1,50 @@
+---
+const jobs = [
+    { date: 'Jun 2025 — Present', tag: 'Current', title: 'Network Administrator', company: 'CDK Integrated Industries Limited · Lagos, Nigeria', bullets: [
+        'Configure routers, switches, and firewalls to optimize network traffic and reliability.',
+        'Manage firewalls and IDS; implement VLAN segmentation for security and performance.',
+        'Monitor network performance, schedule backups, and administer Active Directory.',
+    ]},
+    { date: 'Jan 2023 — Oct 2023', title: 'IT Support Specialist', company: 'CDK Integrated Industries Limited (NYSC)', bullets: [
+        'Resolved network and Windows OS issues across the organization.',
+        'Maintained hardware/software and administered Microsoft Dynamics NAV.',
+    ]},
+    { date: 'Mar 2021 — Oct 2022', title: 'Web Developer', company: 'Mediterranean Foundation', bullets: [
+        'Designed and developed the official foundation website (medglobalafrica.com).',
+        'Implemented responsive design and modern web standards.',
+    ]},
+    { date: 'Jan 2019 — Mar 2020', title: 'Frontend Developer', company: 'AlphaOmegaCoin Cryptocurrency', bullets: [
+        'Built the official Alpha Omega Coin application.',
+        'Implemented wallet interface, transaction history, and secure authentication.',
+    ]},
+    { date: 'Jun 2017 — 2021', tag: 'Freelance', title: 'Graphic Designer', company: 'Lildino Venture Ltd', bullets: [
+        'Designed graphics for sponsorship and advertising campaigns.',
+        'Brand identity development and visual content creation.',
+    ]},
+];
+---
+<section id="work" class="section">
+    <div class="container">
+        <header class="section-head">
+            <p class="section-kicker">Experience</p>
+            <h2 class="section-title">Where I've worked</h2>
+        </header>
+        <div class="work-list">
+            {jobs.map(j => (
+                <article class="work-item">
+                    <div class="work-meta">
+                        <span class="work-date">{j.date}</span>
+                        {j.tag && <span class="work-tag">{j.tag}</span>}
+                    </div>
+                    <div class="work-body">
+                        <h3>{j.title}</h3>
+                        <p class="work-company">{j.company}</p>
+                        <ul class="work-bullets">
+                            {j.bullets.map(b => <li>{b}</li>)}
+                        </ul>
+                    </div>
+                </article>
+            ))}
+        </div>
+    </div>
+</section>
